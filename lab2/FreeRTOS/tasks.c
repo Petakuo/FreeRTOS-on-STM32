@@ -5214,7 +5214,7 @@ when performing module tests). */
 #endif
 
 		void vPadding(char string [], int padNum) {
-			for (int i = 0; i < padNum; ++i) {
+			for (int i = 0; i < padNum; i++) {
 				strcat(string, " ");
 			}
 		}
@@ -5292,11 +5292,11 @@ when performing module tests). */
 			HAL_UART_Transmit(&huart2,(uint8_t *)Monitor_data,strlen(Monitor_data),0xffff);
 
 			/* pxReadyTasksLists */
-			for (UBaseType_t priority = 0; priority < configMAX_PRIORITIES; ++priority) {
+			for (UBaseType_t priority = 0; priority < configMAX_PRIORITIES; priority++) {
 				UBaseType_t readyListLength = listCURRENT_LIST_LENGTH(&pxReadyTasksLists[priority]);
 				if (readyListLength != 0) {
 					ListItem_t *curNode = listGET_ITEM_OF_HEAD_ENTRY(&pxReadyTasksLists[priority]);
-					for (UBaseType_t i = 0; i < readyListLength; ++i) {
+					for (UBaseType_t i = 0; i < readyListLength; i++) {
 						vPrintTCB(curNode->pvOwner, "Ready");
 						curNode = curNode->pxNext;
 					}
@@ -5307,7 +5307,7 @@ when performing module tests). */
 			UBaseType_t delayedListLength = listCURRENT_LIST_LENGTH(pxDelayedTaskList);
 			if (delayedListLength != 0) {
 				ListItem_t *curNode = listGET_ITEM_OF_HEAD_ENTRY(pxDelayedTaskList);
-				for (UBaseType_t i = 0; i < delayedListLength; ++i) {
+				for (UBaseType_t i = 0; i < delayedListLength; i++) {
 					vPrintTCB(curNode->pvOwner, "Blocked");
 					curNode = curNode->pxNext;
 				}
@@ -5316,7 +5316,7 @@ when performing module tests). */
 			UBaseType_t overflowListLength = listCURRENT_LIST_LENGTH(pxOverflowDelayedTaskList);
 			if (overflowListLength != 0) {
 				ListItem_t *curNode = listGET_ITEM_OF_HEAD_ENTRY(pxOverflowDelayedTaskList);
-				for (UBaseType_t i = 0; i < overflowListLength; ++i) {
+				for (UBaseType_t i = 0; i < overflowListLength; i++) {
 					vPrintTCB(curNode->pvOwner, "Overflow");
 					curNode = curNode->pxNext;
 				}
